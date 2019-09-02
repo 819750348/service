@@ -1,0 +1,147 @@
+[class*=" el-icon-sm"],
+[class^=el-icon-sm] {
+    font-family: lx-iconfont !important;
+    display: inline-block;
+    margin-top: 2px;
+    width: 16px !important;
+    height: 16px !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+
+.el-icon-sm-authority {
+    background: url(../img/icon/authority.png);
+}
+
+.el-icon-sm-star-on {
+    background: url(../img/icon/star-on.png);
+}
+
+.el-icon-sm-star-off {
+    background: url(../img/icon/star-off.png);
+}
+
+.el-button-upload {
+    width: 100%;
+    height: 100%;
+}
+
+[class*=" el-img-"],
+[class^=el-img-] {
+    font-family: lx-iconfont !important;
+    display: inline-block;
+    margin-top: 2px;
+    width: 140px !important;
+    height: 140px !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+
+[class*=" el-img-small"],
+[class^=el-img-small] {
+    width: 50px !important;
+    height: 50px !important;
+    background-size: 50px 50px !important;
+    background-repeat: no-repeat !important;
+    -moz-background-size: 100% 100%;
+}
+
+[class*=" el-img-small"]>span,
+[class^=el-img-small]>span {
+    display: none;
+    /* opacity:0.1; */
+    /* color:rgba(0,0,0,0.5); */
+    /* background-color: rgba(0,0,0,0.5); */
+}
+
+.el-icon-sm-user {
+    background: url(../img/user.jpg);
+    width: 20px !important;
+    height: 20px !important;
+    background-size: 20px 20px;
+}
+
+.el-img-sm-user {
+    background: url(../img/user.jpg);
+}
+
+.el-img-small-combat-action,
+.el-img-category-combat-action {
+    background: url(../img/category/combat-action.jpg);
+}
+
+.el-img-small-combat-platform,
+.el-img-category-combat-platform {
+    background: url(../img/category/combat-platform.jpg);
+}
+
+.el-img-small-combat-command,
+.el-img-category-combat-command {
+    background: url(../img/category/combat-command.jpg);
+}
+
+.el-img-small-surrounding-nature,
+.el-img-category-surrounding-nature {
+    background: url(../img/category/surrounding-nature.jpg);
+}
+
+.el-img-small-surrounding-human,
+.el-img-category-surrounding-human {
+    background: url(../img/category/surrounding-human.jpg);
+}
+
+.el-img-small-weapon-system,
+.el-img-category-weapon-system {
+    background: url(../img/category/weapon-system.jpg);
+}
+
+.el-img-small-weapon-sensor,
+.el-img-category-weapon-sensor {
+    background: url(../img/category/weapon-sensor.jpg);
+}
+
+.el-img-small-weapon-support,
+.el-img-category-weapon-support {
+    background: url(../img/category/weapon-support.jpg);
+}
+
+.el-img-small-weapon-command,
+.el-img-category-weapon-command {
+    background: url(../img/category/weapon-command.jpg);
+}
+
+.el-img-small-weapon-communication,
+.el-img-category-weapon-communication {
+    background: url(../img/category/weapon-communication.jpg);
+}
+
+.el-img-small-evaluaction,
+.el-img-category-evaluaction {
+    background: url(../img/category/evaluaction.jpg);
+}
+
+.el-img-small-test-design,
+.el-img-category-test-design {
+    background: url(../img/category/test-design.jpg);
+}
+
+.el-img-small-data-collection,
+.el-img-category-data-collection {
+    background: url(../img/category/data-collection.jpg);
+}
+
+.back-upload {
+    background-image: url(../img/upload-background.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+}
+
+hr {
+    color: rgb(128, 128, 128);
+    background-color: rgb(128, 128, 128);
+}
