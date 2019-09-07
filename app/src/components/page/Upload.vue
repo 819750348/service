@@ -32,9 +32,10 @@
                     <input class="crop-input" type="file" name="image" accept="image/*" @change="setImage"/>
                 </div>
             </div>
-        
+
             <el-dialog title="裁剪图片" :visible.sync="dialogVisible" width="30%">
-                <vue-cropper ref='cropper' :src="imgSrc" :ready="cropImage" :zoom="cropImage" :cropmove="cropImage" style="width:100%;height:300px;"></vue-cropper>
+                <vue-cropper ref='cropper' :src="imgSrc" :ready="cropImage" :zoom="cropImage" :cropmove="cropImage"
+                             style="width:100%;height:300px;"></vue-cropper>
                 <span slot="footer" class="dialog-footer">
                     <el-button @click="cancelCrop">取 消</el-button>
                     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -45,10 +46,11 @@
 </template>
 
 <script>
-    import VueCropper  from 'vue-cropperjs';
+    import VueCropper from 'vue-cropperjs';
+
     export default {
         name: 'upload',
-        data: function(){
+        data: function () {
             return {
                 defaultSrc: './static/img/img.jpg',
                 fileList: [],
@@ -60,8 +62,8 @@
         components: {
             VueCropper
         },
-        methods:{
-            setImage(e){
+        methods: {
+            setImage(e) {
                 const file = e.target.files[0];
                 if (!file.type.includes('image/')) {
                     return;
@@ -74,49 +76,52 @@
                 };
                 reader.readAsDataURL(file);
             },
-            cropImage () {
+            cropImage() {
                 this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
             },
-            cancelCrop(){
+            cancelCrop() {
                 this.dialogVisible = false;
                 this.cropImg = this.defaultSrc;
             },
             imageuploaded(res) {
                 console.log(res)
             },
-            handleError(){
+            handleError() {
                 this.$notify.error({
                     title: '上传失败',
                     message: '图片上传接口上传失败，可更改为自己的服务器接口'
                 });
             }
         },
-        created(){
+        created() {
             this.cropImg = this.defaultSrc;
         }
     }
 </script>
 
 <style scoped>
-    .content-title{
+    .content-title {
         font-weight: 400;
         line-height: 50px;
         margin: 10px 0;
         font-size: 22px;
         color: #1f2f3d;
     }
-    .pre-img{   
+
+    .pre-img {
         width: 100px;
         height: 100px;
         background: #f8f8f8;
         border: 1px solid #eee;
         border-radius: 5px;
     }
-    .crop-demo{
+
+    .crop-demo {
         display: flex;
         align-items: flex-end;
     }
-    .crop-demo-btn{
+
+    .crop-demo-btn {
         position: relative;
         width: 100px;
         height: 40px;
@@ -129,7 +134,8 @@
         border-radius: 4px;
         box-sizing: border-box;
     }
-    .crop-input{
+
+    .crop-input {
         position: absolute;
         width: 100px;
         height: 40px;

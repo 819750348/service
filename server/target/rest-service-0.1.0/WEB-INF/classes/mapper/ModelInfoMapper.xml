@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snake.web.boot.module.rup.mapper.ModelInfoMapper">
+    <resultMap id="BaseResultMap" type="com.snake.web.boot.module.rup.model.ModelInfo">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="model_name" property="modelName" jdbcType="VARCHAR"/>
+        <result column="developer_id" property="developerId" jdbcType="BIGINT"/>
+        <result column="contact_information" property="contactInformation" jdbcType="VARCHAR"/>
+        <result column="category" property="category" jdbcType="BIGINT"/>
+        <result column="type" property="type" jdbcType="BIGINT"/>
+        <result column="developer" property="developer" jdbcType="VARCHAR"/>
+        <result column="write_time" property="writeTime" jdbcType="VARCHAR"/>
+        <result column="model_department" property="modelDepartment" jdbcType="VARCHAR"/>
+        <result column="contact_information_isvisible" property="contactInformationIsvisible" jdbcType="BIT"/>
+        <result column="model_permissions" property="modelPermissions" jdbcType="INTEGER"/>
+        <result column="model_label" property="modelLabel" jdbcType="VARCHAR"/>
+        <result column="pv" property="pv" jdbcType="INTEGER"/>
+        <result column="download_count" property="downloadCount" jdbcType="INTEGER"/>
+        <result column="model_file_id" property="modelFileId" jdbcType="BIGINT"/>
+        <result column="model_execute_type" property="modelExecuteType" jdbcType="VARCHAR"/>
+        <result column="model_developer_platform" property="modelDeveloperPlatform" jdbcType="VARCHAR"/>
+        <result column="model_runtime_platform" property="modelRuntimePlatform" jdbcType="VARCHAR"/>
+        <result column="model_manual_id" property="modelManualId" jdbcType="BIGINT"/>
+        <result column="model_test_report_id" property="modelTestReportId" jdbcType="BIGINT"/>
+        <result column="model_assessment_report_id" property="modelAssessmentReportId" jdbcType="BIGINT"/>
+        <result column="model_status" property="modelStatus" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="BIGINT"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="model_code" property="modelCode" jdbcType="VARCHAR"/>
+        <result column="other_remark" property="otherRemark" jdbcType="VARCHAR"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        id, model_name, developer_id, contact_information, category, type, developer, write_time,
+        model_department, contact_information_isvisible, model_permissions, model_label,
+        pv, download_count, model_file_id, model_execute_type, model_developer_platform,
+        model_runtime_platform, model_manual_id, model_test_report_id, model_assessment_report_id,
+        model_status, create_time, update_time, update_user, update_user_id, description,model_code,other_remark,
+    </sql>
+
+
+    <select id="selectModelInfoByKeys" resultMap="BaseResultMap">
+        select * from model_info where model_status = 8
+        <if test=" keys!= null and keys != ''">
+            and (model_name like '%${keys}%' or model_label like '%${keys}%' or model_department like '%${keys}%' or
+            developer like '%${keys}%' )
+        </if>
+        <if test="type != null and type > 0">
+            and type = #{type}
+        </if>
+        order by id desc
+    </select>
+
+
+    <select id="selectMyCollections" resultMap="BaseResultMap">
+        SELECT m.* from model_collection d LEFT JOIN model_info m on d.model_id=m.id where d.user_id=#{userid} and d.collect_status=1 ORDER BY d.id desc
+    </select>
+
+    <select id="selectMyDowns" resultMap="BaseResultMap">
+        SELECT m.* from model_down d LEFT JOIN model_info m on d.model_id=m.id where d.user_id=#{userid} ORDER BY d.id desc
+    </select>
+
+    <select id="selectMyUploads" resultMap="BaseResultMap">
+       SELECT *  from model_info d  where  d.developer_id =#{userid}  ORDER BY d.id desc
+    </select>
+    <select id="selectMyWarehousing" resultMap="BaseResultMap">
+      SELECT m.* from model_info m LEFT JOIN flow_inst fl on fl.business_id=m.id where fl.id in(select flow_id from flow_step fs where 1=1
+         and fs.wait_user_id like '%,${userid},%'
+          and fs.step_status= 1
+         )
+        <if test="category!= null and category>0 ">
+           and  m.category=#{category}
+        </if>
+        ORDER BY fl.id desc
+    </select>
+
+    <select id="myCompletedWarehousing" resultMap="BaseResultMap">
+        select * from model_info where model_status = 8
+        <if test=" keys!= null and keys != ''">
+            and (model_name like '%${keys}%' or model_label like '%${keys}%' or model_department like '%${keys}%' or
+            developer like '%${keys}%' )
+        </if>
+        <if test="category != null and category > 0">
+            and category = #{category}
+        </if>
+        order by id desc
+    </select>
+
+</mapper>
+

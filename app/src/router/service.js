@@ -57,9 +57,9 @@ export default {
                 },
                 {
                     path: '/browsingdetail',
-                    component: resolve => require(['../components/page/BrowsingDetail.vue'], resolve),
+                    component: resolve => require(['../components/page/BrowsingDetail'], resolve),
                     meta: { title: '浏览明细' }
                 }
-           
+
     ]
 }

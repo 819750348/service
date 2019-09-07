@@ -6,9 +6,7 @@
                 <el-input v-model="formcontent.name"></el-input>
             </el-form-item>
             <el-form-item label="标签" label-width="120px">
-
                 <el-tag v-for="(value, key) in labels" :key="key">{{value}}</el-tag>
-
                 <el-button @click="tjtag">+</el-button>
             </el-form-item>
             <el-form-item label="设计人员" label-width="120px">
@@ -20,7 +18,6 @@
             <el-form-item label="联系方式" label-width="120px">
                 <el-input v-model="formcontent.contactInformation"></el-input>
             </el-form-item>
-
             <el-form-item label="描述" label-width="120px">
                 <el-input v-model="formcontent.description" type="textarea"></el-input>
             </el-form-item>

@@ -27,7 +27,8 @@
                         <el-row type="flex">
                             <el-col :span="6" offset="6">
                                 <el-radio-group>
-                                    <el-input v-model="searchKeys" placeholder="搜索你想要的服务" style="width: 350px" size="medium">
+                                    <el-input v-model="searchKeys" placeholder="搜索你想要的服务" style="width: 350px"
+                                              size="medium">
                                         <el-button slot="append" @click="search">搜索</el-button>
                                     </el-input>
                                 </el-radio-group>

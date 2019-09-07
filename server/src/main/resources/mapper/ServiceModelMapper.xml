@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snake.web.boot.module.rup.mapper.ServiceModelMapper">
+    <resultMap id="BaseResultMap" type="com.snake.web.boot.module.rup.model.ServiceInfo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="category_id" property="categoryId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="service_label" property="serviceLabel" jdbcType="VARCHAR"/>
+        <result column="designer" property="designer" jdbcType="VARCHAR"/>
+        <result column="designer_id" property="designerId" jdbcType="BIGINT"/>
+        <result column="designer_department" property="designerDepartment" jdbcType="VARCHAR"/>
+        <result column="contact_information" property="contactInformation" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="interface_description_file_id" property="interfaceDescriptionFileId" jdbcType="BIGINT"/>
+        <result column="developer" property="developer" jdbcType="VARCHAR"/>
+        <result column="developer_id" property="developerId" jdbcType="BIGINT"/>
+        <result column="designer_status" property="designerStatus" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="design_submission_time" property="designSubmissionTime" jdbcType="VARCHAR"/>
+        <result column="design_submission_user" property="designSubmissionUser" jdbcType="VARCHAR"/>
+        <result column="design_submission_user_id" property="designSubmissionUserId" jdbcType="BIGINT"/>
+        <result column="service_implementation_file_id" property="serviceImplementationFileId" jdbcType="BIGINT"/>
+        <result column="user_manual_file_id" property="userManualFileId" jdbcType="BIGINT"/>
+        <result column="demo_file_id" property="demoFileId" jdbcType="BIGINT"/>
+        <result column="min_instance" property="minInstance" jdbcType="BIGINT"/>
+        <result column="max_instance" property="maxInstance" jdbcType="BIGINT"/>
+        <result column="developer_submission_time" property="developerSubmissionTime" jdbcType="VARCHAR"/>
+        <result column="developer_submission_user" property="developerSubmissionUser" jdbcType="VARCHAR"/>
+        <result column="developer_submission_user_id" property="developerSubmissionUserId" jdbcType="BIGINT"/>
+        <result column="developer_status" property="developerStatus" jdbcType="BIGINT"/>
+        <result column="deploy_submission_time" property="deploySubmissionTime" jdbcType="VARCHAR"/>
+        <result column="deploy_submission_user" property="deploySubmissionUser" jdbcType="VARCHAR"/>
+        <result column="deploy_submission_user_id" property="deploySubmissionUserId" jdbcType="BIGINT"/>
+        <result column="deploy_status" property="deployStatus" jdbcType="BIGINT"/>
+
+
+    </resultMap>
+
+    <select id="getServiceModelListAll" resultMap="BaseResultMap">
+        select * from service_info
+        <if test=" keys!= null and keys != ''">
+            where (name like '%${keys}%' or service_label like '%${keys}%' or designer_department like '%${keys}%' or
+            developer like '%${keys}%' )
+        </if>
+        order by id desc
+    </select>
+
+    <select id="selectLabelServiceUsers" resultMap="BaseResultMap">
+        select * from service_info where category_id=#{labelid}
+        <if test=" keys!= null and keys != ''">
+             and (name like '%${keys}%' or service_label like '%${keys}%' or designer_department like '%${keys}%' or
+            developer like '%${keys}%' )
+        </if>
+        order by id desc
+    </select>
+
+    <select id="searchServicekeys" resultMap="BaseResultMap">
+        select * from service_info
+        <if test=" keys!= null and keys != ''">
+            where (name like '%${keys}%' or service_label like '%${keys}%' or designer_department like '%${keys}%' or
+            developer like '%${keys}%' )
+        </if>
+        order by id desc
+    </select>
+
+</mapper>
+

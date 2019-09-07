@@ -9,7 +9,9 @@
                 </el-radio-group>
             </el-col>
             <el-col :span="6">
-                <el-button size="medium" label="right" @click="addService" icon="el-icon-download" style="float: right">新增</el-button>
+                <el-button size="medium" label="right" @click="addService" icon="el-icon-download" style="float: right">
+                    新增
+                </el-button>
             </el-col>
         </el-row>
         <div :class="showTotal ? 'total-introduce' : 'detailed-introduce'">

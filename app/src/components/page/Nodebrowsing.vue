@@ -27,7 +27,6 @@
                                 </template>
                             </el-table-column>
                         </el-table>
-
                         <div class="block">
                             <el-pagination
                                 :page-sizes="[10, 20, 50, 100]"
@@ -51,7 +50,6 @@
         width: 300px;
         left: 40%;
     }
-
     .el-pagination {
         text-align: center;
     }

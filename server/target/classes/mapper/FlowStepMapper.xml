@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snake.web.boot.module.rup.mapper.FlowStepMapper">
+  <resultMap id="BaseResultMap" type="com.snake.web.boot.module.rup.model.FlowStep">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="flow_id" jdbcType="BIGINT" property="flowId" />
+    <result column="step_name" jdbcType="VARCHAR" property="stepName" />
+    <result column="step_identification" jdbcType="INTEGER" property="stepIdentification" />
+    <result column="step_type" jdbcType="INTEGER" property="stepType" />
+    <result column="step_number" jdbcType="INTEGER" property="stepNumber" />
+    <result column="step_status" jdbcType="INTEGER" property="stepStatus" />
+    <result column="approval_opinion" jdbcType="VARCHAR" property="approvalOpinion" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="do_with_user" jdbcType="VARCHAR" property="doWithUser" />
+    <result column="do_with_userid" jdbcType="BIGINT" property="doWithUserid" />
+    <result column="complete_time" jdbcType="TIMESTAMP" property="completeTime" />
+    <result column="wait_user_id" jdbcType="VARCHAR" property="waitUserId" />
+    <result column="wait_user" jdbcType="VARCHAR" property="waitUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, flow_id, step_name, step_identification, step_type, step_number, step_status, 
+    approval_opinion, create_time, do_with_user, do_with_userid, complete_time, wait_user_id, 
+    wait_user
+  </sql>
+</mapper>

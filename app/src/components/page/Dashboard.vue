@@ -44,12 +44,14 @@
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-card shadow="hover">
-                    <schart ref="bar" class="schart" canvasId="bar" :data="bardata" type="bar" :options="options"></schart>
+                    <schart ref="bar" class="schart" canvasId="bar" :data="bardata" type="bar"
+                            :options="options"></schart>
                 </el-card>
             </el-col>
             <el-col :span="12">
                 <el-card shadow="hover">
-                    <schart ref="pie" class="schart" canvasId="pie" :data="piedata" type="pie" :options="options2"></schart>
+                    <schart ref="pie" class="schart" canvasId="pie" :data="piedata" type="pie"
+                            :options="options2"></schart>
                 </el-card>
             </el-col>
         </el-row>
@@ -59,6 +61,7 @@
 <script>
     import Schart from 'vue-schart';
     import bus from '../common/bus';
+
     export default {
         name: 'dashboard',
         data() {
@@ -70,9 +73,9 @@
 
 
                 bardata: [{
-                        name: '服务1',
-                        value: 10
-                    },
+                    name: '服务1',
+                    value: 10
+                },
                     {
                         name: '服务2',
                         value: 20
@@ -84,16 +87,16 @@
                     {
                         name: '服务4',
                         value: 40
-                    },{
+                    }, {
                         name: '服务5',
                         value: 50
                     }
 
                 ],
                 piedata: [{
-                        name: '已用节点',
-                        value: 40
-                    },
+                    name: '已用节点',
+                    value: 40
+                },
                     {
                         name: '未用节点',
                         value: 60
@@ -126,88 +129,88 @@
                 return this.name === 'admin' ? '超级管理员' : '普通用户';
             }
         },
-        created(){
+        created() {
             this.handleListener();
             // this.changeDate();
         },
-        activated(){
+        activated() {
             this.handleListener();
         },
-        deactivated(){
+        deactivated() {
             window.removeEventListener('resize', this.renderChart);
             bus.$off('collapse', this.handleBus);
         },
         methods: {
-            changeDate(){
+            changeDate() {
                 const now = new Date().getTime();
                 this.data.forEach((item, index) => {
                     const date = new Date(now - (6 - index) * 86400000);
-                    item.name = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`
+                    item.name = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
                 })
             },
-            handleListener(){
+            handleListener() {
                 bus.$on('collapse', this.handleBus);
                 // 调用renderChart方法对图表进行重新渲染
                 window.addEventListener('resize', this.renderChart)
             },
-            handleBus(msg){
+            handleBus(msg) {
                 setTimeout(() => {
                     this.renderChart()
                 }, 300);
             },
-            renderChart(){
+            renderChart() {
                 this.$refs.bar.renderChart();
                 this.$refs.pie.renderChart();
             },
-            service(){
-                    var vm=this;
-                    vm.$axios
-                        .post("/v1/service")
-                        .then(data => {
-                            vm.servicecount=data;
-                        })
-                        .catch(e => {
+            service() {
+                var vm = this;
+                vm.$axios
+                    .post("/v1/service")
+                    .then(data => {
+                        vm.servicecount = data;
+                    })
+                    .catch(e => {
 
-                        });
+                    });
 
             },
-            nodes(){
-                var vm=this;
+            nodes() {
+                var vm = this;
                 vm.$axios
                     .post("/v1/nodes")
-                    .then(data=>{
-                        vm.nodecount=data.length;
+                    .then(data => {
+                        vm.nodecount = data.length;
                     })
                     .catch(
                         e => {
 
                         });
             },
-           launchtime(){
-               var vm=this;
+            launchtime() {
+                var vm = this;
 
-               //日期格式化
-               Date.prototype.Format = function(fmt) {
-                   var o = {
-                       "M+" : this.getMonth() + 1,
-                       "d+" : this.getDate(),
-                       "h+" : this.getHours(),
-                       "m+" : this.getMinutes(),
-                       "s+" : this.getSeconds(),
-                       "q+" : Math.floor((this.getMonth() + 3) / 3),
-                       "S" : this.getMilliseconds()
-                   };
-                   if (/(y+)/.test(fmt))
-                       fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-                   for (var k in o)
-                       if (new RegExp("(" + k + ")").test(fmt))
-                           fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-                   return fmt;
-               };
-              vm.uptime= new Date(localStorage.getItem("launchtime")).Format("yyyy-MM-dd hh:mm:ss");
-           }
+                //日期格式化
+                Date.prototype.Format = function (fmt) {
+                    var o = {
+                        "M+": this.getMonth() + 1,
+                        "d+": this.getDate(),
+                        "h+": this.getHours(),
+                        "m+": this.getMinutes(),
+                        "s+": this.getSeconds(),
+                        "q+": Math.floor((this.getMonth() + 3) / 3),
+                        "S": this.getMilliseconds()
+                    };
+                    if (/(y+)/.test(fmt))
+                        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+                    for (var k in o)
+                        if (new RegExp("(" + k + ")").test(fmt))
+                            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                    return fmt;
+                };
+                vm.uptime = new Date(localStorage.getItem("launchtime")).Format("yyyy-MM-dd hh:mm:ss");
+            }
         },
-        mounted(){
+        mounted() {
             this.service();
             this.nodes();
             this.launchtime();
@@ -265,7 +268,7 @@
         color: rgb(45, 140, 240);
     }
 
-     .grid-con-3 .grid-con-icon {
+    .grid-con-3 .grid-con-icon {
         background: rgb(242, 94, 67);
     }
 
